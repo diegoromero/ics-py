@@ -129,7 +129,7 @@ class Timezone(Component, _tzinfo):
     NAME = "VTIMEZONE"
 
     tzid: str = attr.ib()
-    observances: List[TimezoneObservance] = attr.ib(factory=list)
+    observances: List[TimezoneObservance] = attr.ib(default=list)
     tzurl: Optional[URL] = attr.ib(default=None)
     last_modified: Optional[datetime.datetime] = attr.ib(default=None, converter=ensure_utc)  # type: ignore[misc]
 

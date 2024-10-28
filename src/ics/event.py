@@ -55,7 +55,7 @@ def deterministic_event_data(
 class CalendarEntryAttrs(Component):
     timespan: Timespan = attr.ib()
     summary: Optional[str] = attr.ib(default=None)
-    uid: str = attr.ib(factory=lambda: default_uid_factory.get()())
+    uid: str = attr.ib(default=lambda: default_uid_factory.get()())
 
     description: Optional[str] = attr.ib(default=None)
     location: Optional[str] = attr.ib(default=None)
@@ -64,10 +64,10 @@ class CalendarEntryAttrs(Component):
 
     created: Optional[datetime] = attr.ib(default=None, converter=ensure_utc)  # type: ignore[misc]
     last_modified: Optional[datetime] = attr.ib(default=None, converter=ensure_utc)  # type: ignore[misc]
-    dtstamp: datetime = attr.ib(factory=lambda: default_dtstamp_factory.get()(), converter=ensure_utc, validator=validate_not_none)  # type: ignore[misc]
+    dtstamp: datetime = attr.ib(default=lambda: default_dtstamp_factory.get()(), converter=ensure_utc, validator=validate_not_none)  # type: ignore[misc]
 
-    alarms: List[BaseAlarm] = attr.ib(factory=list, converter=list)
-    attach: List[Union[URL, bytes]] = attr.ib(factory=list, converter=list)
+    alarms: List[BaseAlarm] = attr.ib(default=list, converter=list)
+    attach: List[Union[URL, bytes]] = attr.ib(default=list, converter=list)
 
     # this is overridden by subclasses and then read by the Timespan converter to instantiate an object of the right subclass
     _TIMESPAN_TYPE: ClassVar[Type[Timespan]] = Timespan
@@ -261,9 +261,9 @@ class EventAttrs(CalendarEntryAttrs):
     geo: Optional[Geo] = attr.ib(default=None, converter=make_geo)
 
     attendees: List[Attendee] = attr.ib(
-        factory=list, converter=list, metadata={"ics_name": "ATTENDEE"}
+        default=list, converter=list, metadata={"ics_name": "ATTENDEE"}
     )
-    categories: List[str] = attr.ib(factory=list, converter=list)
+    categories: List[str] = attr.ib(default=list, converter=list)
 
     def add_attendee(self, attendee: Attendee):
         """Add an attendee to the attendees set"""

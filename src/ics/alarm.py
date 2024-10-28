@@ -92,9 +92,9 @@ class EmailAlarm(BaseAlarm):
     summary: str = attr.ib(default=None)  # message subject
     description: str = attr.ib(default=None)  # message body
     attendees: List[Attendee] = attr.ib(
-        factory=list, metadata={"ics_name": "ATTENDEE"}
+        default=list, metadata={"ics_name": "ATTENDEE"}
     )  # message recipients
-    attach: List[Union[URL, bytes, None]] = attr.ib(factory=list)  # e-mail attachments
+    attach: List[Union[URL, bytes, None]] = attr.ib(default=list)  # e-mail attachments
 
     def add_attendee(self, attendee: Attendee):
         """Add an attendee to the attendee list"""

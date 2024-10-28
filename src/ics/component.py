@@ -20,7 +20,7 @@ class Component(RuntimeAttrValidation):
     )
     extra_params: ComponentExtraParams = attr.ib(
         init=False,
-        factory=dict,
+        default=dict,
         validator=instance_of(dict),
         metadata={"ics_ignore": True},
     )

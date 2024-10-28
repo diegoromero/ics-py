@@ -142,7 +142,7 @@ class ContentLine(RuntimeAttrValidation):
     """
 
     name: str = attr.ib(converter=str.upper)  # type: ignore[misc]
-    params: ExtraParams = attr.ib(factory=lambda: ExtraParams(dict()))
+    params: ExtraParams = attr.ib(default=lambda: ExtraParams(dict()))
     value: str = attr.ib(default="")
 
     # TODO store value type for jCal

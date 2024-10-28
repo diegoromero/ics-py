@@ -25,10 +25,10 @@ class CalendarAttrs(Component):
     # CalendarTimezoneConverter has priority 600
 
     events: List[Event] = attr.ib(
-        factory=list, converter=list, metadata={"ics_priority": -100}
+        default=list, converter=list, metadata={"ics_priority": -100}
     )
     todos: List[Todo] = attr.ib(
-        factory=list, converter=list, metadata={"ics_priority": -200}
+        default=list, converter=list, metadata={"ics_priority": -200}
     )
 
 
