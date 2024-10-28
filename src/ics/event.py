@@ -51,7 +51,7 @@ def deterministic_event_data(
         default_dtstamp_factory.reset(dtstamp_token)
 
 
-@attr.s(eq=True, order=False)
+@attr.s(cmp=True, order=False)
 class CalendarEntryAttrs(Component):
     timespan: Timespan = attr.ib()
     summary: Optional[str] = attr.ib(default=None)
@@ -248,7 +248,7 @@ class CalendarEntryAttrs(Component):
         return self.timespan.is_included_in(get_timespan_if_calendar_entry(second))
 
 
-@attr.s(eq=True, order=False)  # order methods are provided by CalendarEntryAttrs
+@attr.s(cmp=True, order=False)  # order methods are provided by CalendarEntryAttrs
 class EventAttrs(CalendarEntryAttrs):
     classification: Optional[str] = attr.ib(
         default=None, validator=v_optional(instance_of(str))
