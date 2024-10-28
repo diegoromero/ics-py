@@ -18,7 +18,7 @@ MAX_PERCENT = 100
 MAX_PRIORITY = 9
 
 
-@attr.s(cmp=True)  # order methods are provided by CalendarEntryAttrs
+@attr.s(cmp=False)  # order methods are provided by CalendarEntryAttrs
 class TodoAttrs(CalendarEntryAttrs):
     percent: Optional[int] = attr.ib(
         default=None, validator=v_optional(in_(range(0, MAX_PERCENT + 1)))
