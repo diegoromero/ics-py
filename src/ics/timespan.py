@@ -152,7 +152,7 @@ class NullableTimespanTuple(NamedTuple):
 TimespanT = TypeVar("TimespanT", bound="Timespan")
 
 
-@attr.s(slots=True, frozen=True, cmp=True, order=False)
+@attr.s(slots=True, frozen=True, cmp=True)
 class Timespan:
     begin_time: Optional[datetime] = attr.ib(
         validator=v_optional(instance_of(datetime)), default=None
