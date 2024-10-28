@@ -57,7 +57,7 @@ docs = [
     "sphinx-autodoc-typehints",
 ]
 checks = [
-    "flake8>=3.8.1",
+    "flake8>=3.6",
     "mypy==0.960",
 ]
 
