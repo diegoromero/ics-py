@@ -42,7 +42,7 @@ def contentline_set_wrap(width):
         DEFAULT_LINE_WRAP.width = oldwidth
 
 
-@attr.s(slots=True, frozen=True, auto_exc=True)  # type: ignore[misc]
+@attr.s(slots=True, frozen=True)  # type: ignore[misc]
 class ParseError(Exception):
     msg: str = attr.ib()
     line_nr: int = attr.ib(default=-1)
