@@ -146,7 +146,7 @@ class ContentLine(RuntimeAttrValidation):
     value: str = attr.ib(default="")
 
     # TODO store value type for jCal
-    line_nr: int = attr.ib(default=-1, eq=False)
+    line_nr: int = attr.ib(default=-1, cmp=False)
 
     def serialize(self, newline=False, wrap=DEFAULT_LINE_WRAP):
         if wrap is None:
