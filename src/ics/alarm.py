@@ -35,7 +35,7 @@ class BaseAlarm(Component, metaclass=ABCMeta):
         default=None, validator=v_optional(instance_of((timedelta, datetime)))
     )
     repeat: int = attr.ib(default=None)
-    duration: timedelta = attr.ib(default=None, converter=c_optional(ensure_timedelta))  # type: ignore[misc]
+    duration: timedelta = attr.ib(default=None, convert=c_optional(ensure_timedelta))  # type: ignore[misc]
 
     @property
     @abstractmethod

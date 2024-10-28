@@ -102,7 +102,7 @@ def rrule_to_rruleset(val):
 class TimezoneObservance(Component):
     tzoffsetfrom: UTCOffset = attr.ib()
     tzoffsetto: UTCOffset = attr.ib()
-    rrule: dateutil.rrule.rruleset = attr.ib(converter=rrule_to_rruleset, validator=instance_of(dateutil.rrule.rruleset))  # type: ignore[misc]
+    rrule: dateutil.rrule.rruleset = attr.ib(convert=rrule_to_rruleset, validator=instance_of(dateutil.rrule.rruleset))  # type: ignore[misc]
 
     tzname: Optional[str] = attr.ib(default=None)
     comment: Optional[str] = attr.ib(default=None)
@@ -131,7 +131,7 @@ class Timezone(Component, _tzinfo):
     tzid: str = attr.ib()
     observances: List[TimezoneObservance] = attr.ib(default=list)
     tzurl: Optional[URL] = attr.ib(default=None)
-    last_modified: Optional[datetime.datetime] = attr.ib(default=None, converter=ensure_utc)  # type: ignore[misc]
+    last_modified: Optional[datetime.datetime] = attr.ib(default=None, convert=ensure_utc)  # type: ignore[misc]
 
     @classmethod
     def from_tzid(cls, tzid: str) -> "Timezone":

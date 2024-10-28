@@ -60,14 +60,14 @@ class CalendarEntryAttrs(Component):
     description: Optional[str] = attr.ib(default=None)
     location: Optional[str] = attr.ib(default=None)
     url: Union[None, str, URL] = attr.ib(default=None)
-    status: Optional[str] = attr.ib(default=None, converter=c_optional(str.upper), validator=in_(STATUS_VALUES))  # type: ignore[misc]
+    status: Optional[str] = attr.ib(default=None, convert=c_optional(str.upper), validator=in_(STATUS_VALUES))  # type: ignore[misc]
 
-    created: Optional[datetime] = attr.ib(default=None, converter=ensure_utc)  # type: ignore[misc]
-    last_modified: Optional[datetime] = attr.ib(default=None, converter=ensure_utc)  # type: ignore[misc]
-    dtstamp: datetime = attr.ib(default=lambda: default_dtstamp_factory.get()(), converter=ensure_utc, validator=validate_not_none)  # type: ignore[misc]
+    created: Optional[datetime] = attr.ib(default=None, convert=ensure_utc)  # type: ignore[misc]
+    last_modified: Optional[datetime] = attr.ib(default=None, convert=ensure_utc)  # type: ignore[misc]
+    dtstamp: datetime = attr.ib(default=lambda: default_dtstamp_factory.get()(), convert=ensure_utc, validator=validate_not_none)  # type: ignore[misc]
 
-    alarms: List[BaseAlarm] = attr.ib(default=list, converter=list)
-    attach: List[Union[URL, bytes]] = attr.ib(default=list, converter=list)
+    alarms: List[BaseAlarm] = attr.ib(default=list, convert=list)
+    attach: List[Union[URL, bytes]] = attr.ib(default=list, convert=list)
 
     # this is overridden by subclasses and then read by the Timespan converter to instantiate an object of the right subclass
     _TIMESPAN_TYPE: ClassVar[Type[Timespan]] = Timespan
@@ -258,12 +258,12 @@ class EventAttrs(CalendarEntryAttrs):
     organizer: Optional[Organizer] = attr.ib(
         default=None, validator=v_optional(instance_of(Organizer))
     )
-    geo: Optional[Geo] = attr.ib(default=None, converter=make_geo)
+    geo: Optional[Geo] = attr.ib(default=None, convert=make_geo)
 
     attendees: List[Attendee] = attr.ib(
-        default=list, converter=list, metadata={"ics_name": "ATTENDEE"}
+        default=list, convert=list, metadata={"ics_name": "ATTENDEE"}
     )
-    categories: List[str] = attr.ib(default=list, converter=list)
+    categories: List[str] = attr.ib(default=list, convert=list)
 
     def add_attendee(self, attendee: Attendee):
         """Add an attendee to the attendees set"""

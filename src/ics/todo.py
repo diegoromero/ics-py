@@ -26,7 +26,7 @@ class TodoAttrs(CalendarEntryAttrs):
     priority: Optional[int] = attr.ib(
         default=None, validator=v_optional(in_(range(0, MAX_PRIORITY + 1)))
     )
-    completed: Optional[datetime] = attr.ib(default=None, converter=ensure_datetime)
+    completed: Optional[datetime] = attr.ib(default=None, convert=ensure_datetime)
 
 
 class Todo(TodoAttrs):

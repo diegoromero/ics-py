@@ -106,9 +106,9 @@ class Attendee(Person):
     NAME = "ATTENDEE"
 
     user_type = PersonProperty[str]("CUTYPE", default="INDIVIDUAL")
-    member = PersonMultiProperty("MEMBER", converter=URIConverter)
+    member = PersonMultiProperty("MEMBER", convert=URIConverter)
     role = PersonProperty[str]("ROLE", default="REQ-PARTICIPANT")
     status = PersonProperty[str]("PARTSTAT", default="NEEDS-ACTION")
-    rsvp = PersonProperty("RSVP", converter=BooleanConverter, default=False)
-    delegated_to = PersonMultiProperty("DELEGATED-TO", converter=URIConverter)
-    delegated_from = PersonMultiProperty("DELEGATED-FROM", converter=URIConverter)
+    rsvp = PersonProperty("RSVP", convert=BooleanConverter, default=False)
+    delegated_to = PersonMultiProperty("DELEGATED-TO", convert=URIConverter)
+    delegated_from = PersonMultiProperty("DELEGATED-FROM", convert=URIConverter)

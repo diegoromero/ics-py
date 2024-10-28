@@ -141,7 +141,7 @@ class ContentLine(RuntimeAttrValidation):
     ``ContentLine('FOO', {'BAR': ['1']}, 'YOLO'))``
     """
 
-    name: str = attr.ib(converter=str.upper)  # type: ignore[misc]
+    name: str = attr.ib(convert=str.upper)  # type: ignore[misc]
     params: ExtraParams = attr.ib(default=lambda: ExtraParams(dict()))
     value: str = attr.ib(default="")
 
@@ -224,9 +224,9 @@ class Container(MutableSequence[ContainerItem]):
         items: Containers or ContentLines
     """
 
-    name: str = attr.ib(converter=str.upper, validator=validate_truthy)  # type:ignore
+    name: str = attr.ib(convert=str.upper, validator=validate_truthy)  # type:ignore
     data: List[ContainerItem] = attr.ib(
-        converter=list,
+        convert=list,
         default=[],
         validator=lambda inst, attr, value: inst.check_items(*value),
     )
