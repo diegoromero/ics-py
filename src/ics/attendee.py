@@ -57,7 +57,7 @@ class PersonMultiProperty(Generic[T]):
 @attr.s
 class PersonAttrs:
     email: str = attr.ib()
-    extra: Dict[str, List[str]] = attr.ib(default=dict)
+    extra: Dict[str, List[str]] = attr.ib(default=lambda: {})
 
 
 class Person(PersonAttrs):
