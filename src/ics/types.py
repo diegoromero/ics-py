@@ -127,7 +127,7 @@ class RuntimeAttrValidation:
         if getattr(self, "__post_init__", None):
             cls = self.__class__  # type: Any
             if not getattr(cls, "__attr_fields__", None):
-                cls.__attr_fields__ = attr.fields_dict(cls)
+                cls.__attr_fields__ = dict((f.name, f) for f in attr.fields(cls))
             try:
                 field = cls.__attr_fields__[key]
             except KeyError:
